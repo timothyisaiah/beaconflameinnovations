@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/data/site";
 import { cn } from "@/lib/utils";
+import logoLong from "@/../public/assets/long.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/95 backdrop-blur-md border-b border-[#c9a227]/10">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <Image src="/assets/long.png" alt="Beacon Flame Innovations" width={200} height={50}/>
+          <Image src={logoLong} alt="Beacon Flame Innovations" width={200} height={50}/>
         </Link>
 
         {/* Desktop Nav */}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import logoLong from "@/../public/assets/long.png";
 
 const footerLinks = {
   company: [
@@ -35,7 +36,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/assets/long.png"
+                src={logoLong}
                 alt="Beacon Flame Innovations"
                 width={350}
                 height={50}
