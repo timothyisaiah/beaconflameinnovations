@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beacon Flame Innovations Ltd
+
+A premium corporate website for Beacon Flame Innovations—a multi-sector innovation company operating at the intersection of Technology, Financial Technology (Fintech), and Agro-business.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **Architecture:** Component-based, scalable, CMS-ready
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Next.js App Router pages
+│   ├── about/
+│   ├── contact/
+│   ├── partnerships/
+│   ├── products/
+│   ├── solutions/
+│   ├── sustainability/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── home/            # Homepage sections
+│   ├── layout/          # Header, Footer
+│   └── ui/              # Reusable UI components
+├── data/                # Site content & configuration
+└── lib/                 # Utilities
+```
 
-## Learn More
+## Design System
 
-To learn more about Next.js, take a look at the following resources:
+- **Primary:** Deep gold/amber (#c9a227)
+- **Secondary:** Dark navy (#0f172a)
+- **Accent:** Soft cream (#faf8f5)
+- **Typography:** Playfair Display (headings), Inter (body)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Home** – Hero, core pillars, stats, featured solutions, vision
+- **About** – Company overview, mission, values, leadership, story
+- **Solutions** – Technology, Fintech, Agro solutions with use cases
+- **Products** – Innovation portfolio (Beecone, Beacon Pay, AgroConnect, etc.)
+- **Sustainability** – Sustainable agriculture, smart farming, climate impact
+- **Partnerships** – Government, institutional, investment opportunities
+- **Contact** – Contact form, business inquiry options
 
-## Deploy on Vercel
+## Future-Ready
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The architecture supports:
+- API integrations
+- User dashboards
+- E-commerce (agro products)
+- Fintech platform expansion
+- CMS content management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build & Deploy
+
+```bash
+npm run build
+npm start
+```
+
+## License
+
+© Beacon Flame Innovations Ltd. All rights reserved.
