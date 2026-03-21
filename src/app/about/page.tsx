@@ -1,104 +1,99 @@
 import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { coreValues } from "@/data/site";
+import { coreValues, siteConfig, visionStatement } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Learn about Beacon Flame Innovations—our mission, vision, values, and the story behind our multi-sector innovation company.",
+  title: "About",
+  description: `Learn about ${siteConfig.name}—engineering-led consultancy, AI-native delivery, and long-term technology partnerships.`,
 };
 
 export default function AboutPage() {
   return (
-    <div className="pt-24">
-      {/* Hero */}
-      <section className="py-20 bg-[#0f172a]">
+    <div className="pt-28">
+      <section className="py-16 md:py-24 border-b border-[var(--border-subtle)]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
-              About Us
+            <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
+              About
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
-              Building the Future of Innovation
+            <h1 className="font-display text-4xl md:text-6xl font-semibold text-[var(--foreground)] mb-6 tracking-tight">
+              A technology company built for serious programs.
             </h1>
-            <p className="text-xl text-[#faf8f5]/80 max-w-2xl">
-              Beacon Flame Innovations Ltd is a multi-sector company operating at
-              the intersection of technology, financial technology, and
-              agro-business. We create integrated solutions that drive
-              sustainable growth and financial inclusion.
+            <p className="text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
+              {siteConfig.name} is a software engineering and technology
+              consultancy headquartered in {siteConfig.location}. We combine deep
+              engineering capability with strategic clarity—designing and
+              building intelligent platforms, analytics systems, and AI-enabled
+              products for organizations that measure success in production, not
+              promises.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Company Overview */}
-      <section className="py-24 bg-[#faf8f5]">
+      <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
             <AnimatedSection>
-              <h2 className="text-3xl font-display font-bold text-[#0f172a] mb-6">
-                Company Overview
+              <h2 className="text-3xl font-display font-semibold text-[var(--foreground)] mb-6">
+                How we work
               </h2>
-              <p className="text-[#1e293b]/80 leading-relaxed mb-4">
-                Founded with a vision to bridge the gap between traditional
-                industries and cutting-edge technology, Beacon Flame Innovations
-                has grown into a trusted partner for organizations seeking
-                transformative solutions.
+              <p className="text-[var(--muted)] leading-relaxed mb-4">
+                Engagements are structured around measurable outcomes: system
+                boundaries, delivery milestones, and operational constraints. We
+                bring decades of combined experience across software engineering,
+                product leadership, data analytics, AI systems, and digital
+                transformation—applied with the composure expected of global
+                partners.
               </p>
-              <p className="text-[#1e293b]/80 leading-relaxed">
-                Our unique position at the intersection of tech, fintech, and
-                agro allows us to deliver integrated ecosystems that create
-                value across entire value chains—from farmer to consumer, from
-                unbanked to financially empowered.
+              <p className="text-[var(--muted)] leading-relaxed">
+                Our posture is future-facing: AI, agents, and agentic workflows
+                where they earn their place—integrated with architecture,
+                governance, and ownership models that scale.
               </p>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="bg-[#0f172a] rounded-2xl p-8 text-[#faf8f5]">
+              <div className="rounded-2xl border border-[#87158c]/15 bg-white/95 p-8 text-[var(--foreground)] dark:border-white/[0.08] dark:bg-[#0b0c10]/90">
                 <h3 className="text-xl font-display font-semibold mb-4">
                   Mission
                 </h3>
-                <p className="text-[#faf8f5]/80 mb-6">
-                  To empower communities and businesses through technology-driven
-                  solutions that promote financial inclusion, sustainable
-                  agriculture, and scalable innovation.
+                <p className="text-[var(--muted)] mb-8 leading-relaxed">
+                  Deliver intelligent digital systems and advisory that compound
+                  in value—engineered for reliability, clarity, and long-term
+                  partnership.
                 </p>
                 <h3 className="text-xl font-display font-semibold mb-4">
                   Vision
                 </h3>
-                <p className="text-[#faf8f5]/80">
-                  To create an integrated ecosystem where technology, finance,
-                  and agriculture converge—building a more inclusive and
-                  sustainable future for all.
-                </p>
+                <p className="text-[var(--muted)] leading-relaxed">{visionStatement}</p>
               </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-24 bg-white">
+      <section className="py-20 md:py-28 border-t border-[var(--border-subtle)]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
-              Our Values
+            <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
+              Principles
             </p>
-            <h2 className="text-4xl font-display font-bold text-[#0f172a]">
-              What We Stand For
+            <h2 className="text-4xl font-display font-semibold text-[var(--foreground)]">
+              What we optimize for
             </h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {coreValues.map((value, index) => (
               <AnimatedSection key={value.title}>
-                <div className="p-6 rounded-xl border border-[#f5f0e8] hover:border-[#c9a227]/30 transition-colors h-full">
-                  <span className="text-3xl font-display font-bold text-[#c9a227]/30">
-                    0{index + 1}
+                <div className="p-6 rounded-2xl border border-[#87158c]/15 bg-white/95 hover:border-[#87158c]/35 transition-colors h-full dark:border-white/[0.08] dark:bg-[#07080c]/90">
+                  <span className="text-3xl font-display font-semibold text-[#87158c]/35">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-lg font-display font-semibold text-[#0f172a] mt-2 mb-2">
+                  <h3 className="text-lg font-display font-semibold text-[var(--foreground)] mt-2 mb-2">
                     {value.title}
                   </h3>
-                  <p className="text-[#1e293b]/80 text-sm leading-relaxed">
+                  <p className="text-[var(--muted)] text-sm leading-relaxed">
                     {value.description}
                   </p>
                 </div>
@@ -108,61 +103,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership Placeholder */}
-      <section className="py-24 bg-[#faf8f5]">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center">
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
-              Leadership
-            </p>
-            <h2 className="text-4xl font-display font-bold text-[#0f172a] mb-6">
-              Meet Our Team
-            </h2>
-            <p className="text-[#1e293b]/80 max-w-2xl mx-auto mb-12">
-              Our leadership team brings decades of experience across
-              technology, finance, and agriculture. Together, we drive innovation
-              that creates lasting impact.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-8 border border-[#f5f0e8] text-center"
-                >
-                  <div className="w-24 h-24 rounded-full bg-[#c9a227]/20 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-display font-bold text-[#c9a227]">
-                      {i}
-                    </span>
-                  </div>
-                  <h3 className="font-display font-semibold text-[#0f172a]">
-                    Leadership Member {i}
-                  </h3>
-                  <p className="text-sm text-[#1e293b]/70 mt-1">Role Placeholder</p>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Company Story */}
-      <section className="py-24 bg-[#0f172a]">
+      <section className="py-20 md:py-28 border-t border-[var(--border-subtle)]">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
-              Our Story
+            <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
+              Location
             </p>
-            <h2 className="text-3xl font-display font-bold text-[#faf8f5] mb-6">
-              From Vision to Impact
+            <h2 className="text-3xl font-display font-semibold text-[var(--foreground)] mb-6">
+              {siteConfig.location} — global standard
             </h2>
-            <p className="text-[#faf8f5]/80 leading-relaxed">
-              Beacon Flame Innovations was born from a simple observation: the
-              worlds of technology, finance, and agriculture were evolving
-              rapidly—but in silos. We saw an opportunity to create an integrated
-              approach that could unlock value for millions. Today, our
-              solutions span software platforms, financial services, and
-              sustainable agriculture—all designed to work together in a
-              cohesive ecosystem that scales.
+            <p className="text-[var(--muted)] leading-relaxed">
+              We operate with international communication norms, engineering
+              discipline, and delivery accountability—rooted in Kampala and built
+              for partners who expect precision wherever they sit.
             </p>
           </AnimatedSection>
         </div>

@@ -5,12 +5,16 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 
 const inquiryTypes = [
-  "General Inquiry",
-  "Partnership Opportunity",
-  "Product / Solution Inquiry",
-  "Investment Inquiry",
-  "Media / Press",
+  "Engineering / platform build",
+  "AI systems or agentic workflow program",
+  "Analytics / data platform",
+  "Advisory / diligence",
+  "Partnership discussion",
+  "Media / other",
 ];
+
+const fieldClass =
+  "w-full px-4 py-3 rounded-xl border border-[#87158c]/20 bg-white text-[var(--foreground)] placeholder:text-[var(--muted)] dark:border-white/10 dark:bg-[#05060a] dark:text-[#e8ecf4] focus:border-[#87158c]/50 focus:ring-2 focus:ring-[#87158c]/15 outline-none transition-all";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -23,7 +27,6 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic - ready for API integration
     console.log("Form submitted:", formState);
   };
 
@@ -39,46 +42,43 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-24">
-      {/* Hero */}
-      <section className="py-20 bg-[#0f172a]">
+    <div className="pt-28">
+      <section className="py-16 md:py-20 border-b border-[var(--border-subtle)]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
               Contact
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
-              Get in Touch
+            <h1 className="text-4xl md:text-6xl font-display font-semibold text-[var(--foreground)] mb-6 tracking-tight">
+              Serious inquiries welcome.
             </h1>
-            <p className="text-xl text-[#faf8f5]/80 max-w-2xl">
-              Have a question or want to explore a partnership? We&apos;d love to
-              hear from you.
+            <p className="text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
+              For engagements, partnerships, and advisory discussions—share
+              context and we will respond with clarity on fit and next steps.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-24 bg-[#faf8f5]">
+      <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Form */}
             <AnimatedSection>
               <form
                 onSubmit={handleSubmit}
-                className="bg-white rounded-2xl p-8 md:p-10 border border-[#f5f0e8] shadow-sm"
+                className="rounded-2xl border border-[#87158c]/15 bg-white/95 p-8 md:p-10 dark:border-white/[0.08] dark:bg-[#0b0c10]/80"
               >
-                <h2 className="text-2xl font-display font-bold text-[#0f172a] mb-6">
-                  Send a Message
+                <h2 className="text-2xl font-display font-semibold text-[var(--foreground)] mb-8">
+                  Send a message
                 </h2>
 
                 <div className="space-y-6">
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-[#0f172a] mb-2"
+                      className="block text-sm font-medium text-[var(--muted)] mb-2"
                     >
-                      Full Name *
+                      Full name *
                     </label>
                     <input
                       type="text"
@@ -87,17 +87,18 @@ export default function ContactPage() {
                       required
                       value={formState.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e0d8] focus:border-[#c9a227] focus:ring-2 focus:ring-[#c9a227]/20 outline-none transition-all"
+                      className={fieldClass}
                       placeholder="Your name"
+                      autoComplete="name"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-[#0f172a] mb-2"
+                      className="block text-sm font-medium text-[var(--muted)] mb-2"
                     >
-                      Email Address *
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -106,17 +107,18 @@ export default function ContactPage() {
                       required
                       value={formState.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e0d8] focus:border-[#c9a227] focus:ring-2 focus:ring-[#c9a227]/20 outline-none transition-all"
-                      placeholder="you@company.com"
+                      className={fieldClass}
+                      placeholder="you@organization.com"
+                      autoComplete="email"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="company"
-                      className="block text-sm font-medium text-[#0f172a] mb-2"
+                      className="block text-sm font-medium text-[var(--muted)] mb-2"
                     >
-                      Company / Organization
+                      Organization
                     </label>
                     <input
                       type="text"
@@ -124,17 +126,18 @@ export default function ContactPage() {
                       name="company"
                       value={formState.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e0d8] focus:border-[#c9a227] focus:ring-2 focus:ring-[#c9a227]/20 outline-none transition-all"
-                      placeholder="Your organization"
+                      className={fieldClass}
+                      placeholder="Company or institution"
+                      autoComplete="organization"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="inquiryType"
-                      className="block text-sm font-medium text-[#0f172a] mb-2"
+                      className="block text-sm font-medium text-[var(--muted)] mb-2"
                     >
-                      Inquiry Type *
+                      Inquiry type *
                     </label>
                     <select
                       id="inquiryType"
@@ -142,7 +145,7 @@ export default function ContactPage() {
                       required
                       value={formState.inquiryType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e0d8] focus:border-[#c9a227] focus:ring-2 focus:ring-[#c9a227]/20 outline-none transition-all bg-white"
+                      className={fieldClass}
                     >
                       <option value="">Select an option</option>
                       {inquiryTypes.map((type) => (
@@ -156,7 +159,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-[#0f172a] mb-2"
+                      className="block text-sm font-medium text-[var(--muted)] mb-2"
                     >
                       Message *
                     </label>
@@ -167,38 +170,37 @@ export default function ContactPage() {
                       rows={5}
                       value={formState.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e0d8] focus:border-[#c9a227] focus:ring-2 focus:ring-[#c9a227]/20 outline-none transition-all resize-none"
-                      placeholder="Tell us about your inquiry..."
+                      className={`${fieldClass} resize-none`}
+                      placeholder="Context, timeline, constraints, outcomes…"
                     />
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <Button type="submit" variant="primary" size="lg">
-                    Send Message
+                <div className="mt-10">
+                  <Button type="submit" variant="primary" size="lg" className="rounded-full px-10">
+                    Submit inquiry
                   </Button>
                 </div>
               </form>
             </AnimatedSection>
 
-            {/* Contact Info */}
             <AnimatedSection>
-              <div className="space-y-8">
+              <div className="space-y-10">
                 <div>
-                  <h2 className="text-2xl font-display font-bold text-[#0f172a] mb-6">
-                    Contact Information
+                  <h2 className="text-2xl font-display font-semibold text-[var(--foreground)] mb-6">
+                    Direct channels
                   </h2>
-                  <p className="text-[#1e293b]/80 leading-relaxed">
-                    For business inquiries, partnership discussions, or general
-                    questions, reach out through the form or the details below.
+                  <p className="text-[var(--muted)] leading-relaxed">
+                    Headquarters in Kampala, Uganda—delivery and communication
+                    aligned to global enterprise expectations.
                   </p>
                 </div>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#c9a227]/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#87158c]/10 flex items-center justify-center flex-shrink-0 border border-[#87158c]/20">
                       <svg
-                        className="w-5 h-5 text-[#c9a227]"
+                        className="w-5 h-5 text-[#87158c]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -218,17 +220,15 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#0f172a]">Location</h3>
-                      <p className="text-[#1e293b]/80">
-                        Headquarters • Global Operations
-                      </p>
+                      <h3 className="font-semibold text-[var(--foreground)]">Location</h3>
+                      <p className="text-[var(--muted)]">Kampala, Uganda</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#c9a227]/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#87158c]/10 flex items-center justify-center flex-shrink-0 border border-[#87158c]/20">
                       <svg
-                        className="w-5 h-5 text-[#c9a227]"
+                        className="w-5 h-5 text-[#87158c]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -242,43 +242,14 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#0f172a]">Email</h3>
+                      <h3 className="font-semibold text-[var(--foreground)]">Email</h3>
                       <a
                         href="mailto:contact@beaconflameinnovations.com"
-                        className="text-[#c9a227] hover:underline"
+                        className="text-[#87158c] hover:underline"
                       >
                         contact@beaconflameinnovations.com
                       </a>
                     </div>
-                  </div>
-                </div>
-
-                <div className="pt-8 border-t border-[#e5e0d8]">
-                  <h3 className="font-semibold text-[#0f172a] mb-4">
-                    Connect With Us
-                  </h3>
-                  <div className="flex gap-4">
-                    <a
-                      href="#"
-                      className="text-[#1e293b]/70 hover:text-[#c9a227] transition-colors"
-                      aria-label="LinkedIn"
-                    >
-                      LinkedIn
-                    </a>
-                    <a
-                      href="#"
-                      className="text-[#1e293b]/70 hover:text-[#c9a227] transition-colors"
-                      aria-label="Twitter"
-                    >
-                      Twitter
-                    </a>
-                    <a
-                      href="#"
-                      className="text-[#1e293b]/70 hover:text-[#c9a227] transition-colors"
-                      aria-label="Instagram"
-                    >
-                      Instagram
-                    </a>
                   </div>
                 </div>
               </div>

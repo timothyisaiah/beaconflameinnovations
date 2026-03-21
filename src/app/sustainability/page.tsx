@@ -33,7 +33,7 @@ export default function SustainabilityPage() {
       <section className="py-20 bg-[#0f172a]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-[#87158c] font-medium tracking-widest uppercase text-sm mb-4">
               Sustainability & Innovation
             </p>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
@@ -64,10 +64,10 @@ export default function SustainabilityPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {sustainabilityPillars.map((pillar) => (
               <AnimatedSection key={pillar.title}>
-                <div className="p-8 bg-white rounded-2xl border border-[#f5f0e8] hover:border-[#c9a227]/30 h-full transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-[#c9a227]/10 flex items-center justify-center mb-6">
+                <div className="p-8 bg-white rounded-2xl border border-[#f5f0e8] hover:border-[#87158c]/30 h-full transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#87158c]/10 flex items-center justify-center mb-6">
                     <svg
-                      className="w-6 h-6 text-[#c9a227]"
+                      className="w-6 h-6 text-[#87158c]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

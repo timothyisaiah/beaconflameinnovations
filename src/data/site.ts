@@ -1,68 +1,44 @@
 export const siteConfig = {
-  name: "Beacon Flame Innovations Ltd",
-  tagline: "Powering Innovation Across Industries",
+  name: "BeaconFlame Innovations",
+  legalName: "BeaconFlame Innovations Ltd",
+  tagline: "Software engineering and technology consultancy",
   description:
-    "A multi-sector innovation company operating at the intersection of Technology, Financial Technology, and Agro-business.",
+    "Engineering intelligent systems, AI platforms, analytics, and digital solutions for organizations that expect precision—from Kampala to global partners.",
   url: "https://beaconflameinnovations.com",
   ogImage: "/og-image.jpg",
+  location: "Kampala, Uganda",
 };
 
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/products", label: "Products" },
-  { href: "/sustainability", label: "Sustainability" },
+  { href: "/capabilities", label: "Capabilities" },
   { href: "/partnerships", label: "Partnerships" },
   { href: "/contact", label: "Contact" },
 ];
 
-export const corePillars = [
-  {
-    title: "Technology",
-    description:
-      "Cutting-edge software platforms, smart systems, and digital infrastructure that power the future of business.",
-    icon: "tech",
-  },
-  {
-    title: "Fintech",
-    description:
-      "Innovative financial solutions—mobile banking, digital wallets, and microfinance—driving financial inclusion.",
-    icon: "fintech",
-  },
-  {
-    title: "Agro Innovation",
-    description:
-      "Sustainable agriculture, smart farming systems, and climate-resilient solutions for food security.",
-    icon: "agro",
-  },
-];
-
-export const keyStats = [
-  { value: "50+", label: "Solutions Deployed" },
-  { value: "12", label: "Countries Served" },
-  { value: "2M+", label: "Lives Impacted" },
-  { value: "98%", label: "Client Retention" },
-];
-
 export const coreValues = [
   {
-    title: "Innovation",
-    description: "We push boundaries and pioneer solutions that transform industries.",
+    title: "Precision",
+    description:
+      "Engineering judgment, clear interfaces, and operational realism over performative innovation.",
   },
   {
-    title: "Sustainability",
-    description: "Every solution we build considers long-term environmental and social impact.",
+    title: "Durability",
+    description:
+      "Architectures and partnerships designed to compound—not expire with the next release cycle.",
   },
   {
-    title: "Financial Inclusion",
-    description: "We believe everyone deserves access to modern financial tools.",
+    title: "Clarity",
+    description:
+      "Executive-ready communication with technical depth when decisions require it.",
   },
   {
-    title: "Scalability",
-    description: "Our platforms are built to grow with your ambitions.",
+    title: "Trust",
+    description:
+      "Delivery cadence, transparency, and accountability appropriate to serious programs.",
   },
 ];
 
 export const visionStatement =
-  "To create an integrated ecosystem where technology, finance, and agriculture converge—empowering communities, driving sustainable growth, and building a more inclusive future.";
+  "Build enduring intelligent systems and partnerships—future-facing, globally competitive, and grounded in execution.";

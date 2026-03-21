@@ -5,62 +5,58 @@ import { Button } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Partnerships",
   description:
-    "Government collaborations, institutional partnerships, and investment opportunities. Partner with Beacon Flame Innovations.",
+    "Strategic partnerships, co-development, and enterprise programs with BeaconFlame Innovations.",
 };
 
 const partnershipTypes = [
   {
-    title: "Government Collaborations",
+    title: "Enterprise programs",
     description:
-      "We work with government agencies to deploy technology solutions that enhance public services, financial inclusion, and agricultural development.",
+      "Multi-phase platform builds, modernization roadmaps, and AI systems programs with clear governance, milestones, and engineering ownership.",
   },
   {
-    title: "Institutional Partnerships",
+    title: "Product & platform co-development",
     description:
-      "Banks, NGOs, and enterprises partner with us to leverage our platforms for scale, efficiency, and impact.",
+      "Joint delivery models for teams that need senior architecture, delivery leadership, and hands-on engineering capacity without diluting focus.",
   },
   {
-    title: "Investment Opportunities",
+    title: "Advisory & diligence",
     description:
-      "Strategic investors and impact funds can explore opportunities to support our growth and mission-driven expansion.",
+      "Technical due diligence, architecture reviews, and transformation planning for investors, boards, and operating teams making consequential bets.",
   },
 ];
 
 export default function PartnershipsPage() {
   return (
-    <div className="pt-24">
-      {/* Hero */}
-      <section className="py-20 bg-[#0f172a]">
+    <div className="pt-28">
+      <section className="py-16 md:py-24 border-b border-[var(--border-subtle)]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
               Partnerships
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
-              Partner With Us
+            <h1 className="font-display text-4xl md:text-6xl font-semibold text-[var(--foreground)] mb-6 tracking-tight">
+              Structured collaboration for consequential work.
             </h1>
-            <p className="text-xl text-[#faf8f5]/80 max-w-2xl">
-              We believe in the power of collaboration. Whether you&apos;re a
-              government body, financial institution, or impact investor—we
-              welcome the opportunity to build together.
+            <p className="text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
+              We partner with organizations that value engineering discipline,
+              transparent delivery, and outcomes measured in production. If that
+              is your bar, we should talk.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Partnership Types */}
-      <section className="py-24 bg-[#faf8f5]">
+      <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             {partnershipTypes.map((type) => (
               <AnimatedSection key={type.title}>
-                <div className="p-8 bg-white rounded-2xl border border-[#f5f0e8] hover:border-[#c9a227]/30 h-full transition-colors">
-                  <h3 className="text-xl font-display font-semibold text-[#0f172a] mb-3">
+                <div className="p-8 rounded-2xl border border-[#87158c]/15 bg-white/95 hover:border-[#87158c]/35 h-full transition-colors dark:border-white/[0.08] dark:bg-[#0b0c10]/80">
+                  <h3 className="text-xl font-display font-semibold text-[var(--foreground)] mb-3">
                     {type.title}
                   </h3>
-                  <p className="text-[#1e293b]/80 leading-relaxed">
-                    {type.description}
-                  </p>
+                  <p className="text-[var(--muted)] leading-relaxed">{type.description}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -68,19 +64,19 @@ export default function PartnershipsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-[#0f172a]">
+      <section className="py-20 md:py-28 border-t border-[var(--border-subtle)]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl font-display font-bold text-[#faf8f5] mb-6">
-              Ready to Partner?
+            <h2 className="text-3xl font-display font-semibold text-[var(--foreground)] mb-6">
+              Begin with clarity
             </h2>
-            <p className="text-[#faf8f5]/80 text-lg mb-8">
-              Get in touch to discuss how we can collaborate to drive innovation
-              and impact.
+            <p className="text-[var(--muted)] text-lg mb-10 leading-relaxed">
+              Share context, constraints, and desired outcomes. We respond with a
+              candid view of fit, approach, and what “good” looks like in
+              delivery.
             </p>
-            <Button href="/contact" variant="primary" size="lg">
-              Partner With Us
+            <Button href="/contact" variant="primary" size="lg" className="rounded-full px-10">
+              Contact partnerships
             </Button>
           </AnimatedSection>
         </div>

@@ -1,38 +1,52 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { siteConfig } from "@/data/site";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Beacon Flame Innovations Ltd | Powering Innovation Across Industries",
-    template: "%s | Beacon Flame Innovations",
+    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "A multi-sector innovation company operating at the intersection of Technology, Financial Technology, and Agro-business. Innovation at scale.",
+  description: siteConfig.description,
   keywords: [
-    "innovation",
-    "fintech",
-    "agro-business",
-    "technology",
-    "sustainable agriculture",
-    "financial inclusion",
+    "software engineering",
+    "technology consultancy",
+    "AI systems",
+    "agentic AI",
+    "data analytics",
+    "digital transformation",
+    "Kampala",
+    "Uganda",
   ],
   openGraph: {
     type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
   },
 };
 
@@ -42,11 +56,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased font-sans">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${syne.variable} ${dmSans.variable}`}
+    >
+      <body className="antialiased font-sans min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <ThemeProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

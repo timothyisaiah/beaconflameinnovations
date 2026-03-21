@@ -16,7 +16,7 @@ export default function ProductsPage() {
       <section className="py-20 bg-[#0f172a]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-[#87158c] font-medium tracking-widest uppercase text-sm mb-4">
               Products & Ventures
             </p>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
@@ -35,20 +35,20 @@ export default function ProductsPage() {
       <section className="py-24 bg-[#faf8f5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8">
-            {products.map((product, index) => (
+            {products.map((product) => (
               <AnimatedSection key={product.id}>
                 <div
                   id={product.id}
-                  className="group bg-white rounded-2xl border border-[#f5f0e8] overflow-hidden hover:border-[#c9a227]/30 hover:shadow-xl transition-all duration-300"
+                  className="group bg-white rounded-2xl border border-[#f5f0e8] overflow-hidden hover:border-[#87158c]/30 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="p-8 md:p-10">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-[#c9a227]/10 text-[#c9a227] rounded-full mb-4">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-[#87158c]/10 text-[#87158c] rounded-full mb-4">
                       {product.category}
                     </span>
-                    <h2 className="text-2xl font-display font-bold text-[#0f172a] mb-2 group-hover:text-[#c9a227] transition-colors">
+                    <h2 className="text-2xl font-display font-bold text-[#0f172a] mb-2 group-hover:text-[#87158c] transition-colors">
                       {product.name}
                     </h2>
-                    <p className="text-[#c9a227] font-medium mb-4">
+                    <p className="text-[#87158c] font-medium mb-4">
                       {product.tagline}
                     </p>
                     <p className="text-[#1e293b]/80 leading-relaxed mb-6">

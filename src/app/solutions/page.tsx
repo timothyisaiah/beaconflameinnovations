@@ -22,15 +22,15 @@ function SolutionCard({
   useCases: string[];
 }) {
   return (
-    <div className="p-6 rounded-xl border border-[#f5f0e8] hover:border-[#c9a227]/30 bg-white hover:shadow-lg transition-all duration-300">
+    <div className="p-6 rounded-xl border border-[#f5f0e8] hover:border-[#87158c]/30 bg-white hover:shadow-lg transition-all duration-300">
       <h3 className="text-lg font-display font-semibold text-[#0f172a] mb-2">
         {title}
       </h3>
       <p className="text-[#1e293b]/80 text-sm mb-4">{description}</p>
       <ul className="space-y-1">
         {useCases.map((uc) => (
-          <li key={uc} className="text-sm text-[#c9a227] flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c9a227]" />
+          <li key={uc} className="text-sm text-[#87158c] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#87158c]" />
             {uc}
           </li>
         ))}
@@ -84,7 +84,7 @@ export default function SolutionsPage() {
       <section className="py-20 bg-[#0f172a]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <p className="text-[#c9a227] font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-[#87158c] font-medium tracking-widest uppercase text-sm mb-4">
               Solutions
             </p>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">

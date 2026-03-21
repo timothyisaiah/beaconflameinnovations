@@ -24,17 +24,17 @@ export function Button({
   type = "button",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c9a227]";
+    "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--background)] focus:ring-[#87158c]";
 
   const variants = {
     primary:
-      "bg-[#c9a227] text-[#0f172a] hover:bg-[#a8861f] focus:ring-[#c9a227]",
+      "bg-[#87158c] text-white hover:bg-[#9d2a9f] dark:hover:bg-[#a855c8] focus:ring-[#87158c]",
     secondary:
-      "bg-[#0f172a] text-[#faf8f5] hover:bg-[#1e293b] focus:ring-[#0f172a]",
+      "bg-[var(--card)] text-[var(--foreground)] border border-[var(--border-subtle)] hover:bg-[#87158c]/10 focus:ring-[#87158c]",
     outline:
-      "border-2 border-[#c9a227] text-[#c9a227] hover:bg-[#c9a227] hover:text-[#0f172a] focus:ring-[#c9a227]",
+      "border-2 border-[#87158c] text-[#87158c] hover:bg-[#87158c] hover:text-white focus:ring-[#87158c]",
     ghost:
-      "text-[#c9a227] hover:bg-[#c9a227]/10 focus:ring-[#c9a227]",
+      "text-[#87158c] hover:bg-[#87158c]/10 focus:ring-[#87158c]",
   };
 
   const sizes = {
