@@ -2,12 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/data/site";
 import { ImageMark } from "@/components/layout/ImageMark";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { cn } from "@/lib/utils";
+
+function isActivePath(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -24,26 +31,38 @@ export function Header() {
         </span>
 
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-[var(--muted)] hover:text-[#87158c] transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <ThemeToggle />
+          {navLinks.map((link) => {
+            const active = isActivePath(pathname, link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "text-sm font-medium transition-colors duration-300 relative",
+                  active
+                    ? "text-[#87158c] font-semibold after:absolute after:left-0 after:-bottom-1 after:right-0 after:h-0.5 after:rounded-full after:bg-[#87158c]"
+                    : "text-[var(--muted)] hover:text-[#87158c]",
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href="/contact"
-            className="px-5 py-2.5 rounded-full bg-[#87158c] text-white font-semibold hover:bg-[var(--brand-hover)] transition-colors duration-300"
+            className={cn(
+              "px-5 py-2.5 rounded-full font-semibold transition-colors duration-300",
+              isActivePath(pathname, "/contact")
+                ? "bg-[#87158c] text-white ring-2 ring-[#87158c] ring-offset-2 ring-offset-[var(--background)]"
+                : "bg-[#87158c] text-white hover:bg-[var(--brand-hover)]",
+            )}
           >
             Engage
           </Link>
         </div>
 
         <div className="flex md:hidden items-center gap-2">
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -88,20 +107,33 @@ export function Header() {
             className="md:hidden bg-[var(--background)] border-t border-[var(--border-subtle)]"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-[var(--foreground)]/90 hover:text-[#87158c] font-medium transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const active = isActivePath(pathname, link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "font-medium transition-colors",
+                      active
+                        ? "text-[#87158c] font-semibold border-l-2 border-[#87158c] pl-3 -ml-3"
+                        : "text-[var(--foreground)]/90 hover:text-[#87158c]",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 px-5 py-3 rounded-full bg-[#87158c] text-white font-semibold text-center"
+                className={cn(
+                  "mt-2 px-5 py-3 rounded-full bg-[#87158c] text-white font-semibold text-center transition-colors",
+                  isActivePath(pathname, "/contact") &&
+                    "ring-2 ring-[#87158c] ring-offset-2 ring-offset-[var(--background)]",
+                )}
               >
                 Engage
               </Link>

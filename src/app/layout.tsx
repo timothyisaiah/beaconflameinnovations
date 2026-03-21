@@ -3,7 +3,6 @@ import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ThemeProvider } from "@/providers/ThemeProvider";
 import { siteConfig } from "@/data/site";
 
 const syne = Syne({
@@ -59,14 +58,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${syne.variable} ${dmSans.variable}`}
+      className={`dark ${syne.variable} ${dmSans.variable}`}
     >
       <body className="antialiased font-sans min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-        <ThemeProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <Header />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );

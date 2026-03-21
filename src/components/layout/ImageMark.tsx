@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { brandAssets } from "@/data/brand";
 
@@ -27,43 +25,6 @@ export function ImageMark({
   compact?: boolean;
   size?: ImageMarkSize;
 }) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    queueMicrotask(() => setMounted(true));
-  }, []);
-
-  const horizontalSrc =
-    resolvedTheme === "dark"
-      ? brandAssets.logoHorizontalDark
-      : brandAssets.logoHorizontalLight;
-
-  if (!mounted) {
-    if (compact) {
-      return (
-        <div
-          className={cn(
-            "h-9 w-9 shrink-0 animate-pulse rounded-lg bg-[var(--muted)]/20",
-            className
-          )}
-          aria-hidden
-        />
-      );
-    }
-    return (
-      <div
-        className={cn(
-          "animate-pulse rounded-lg bg-[var(--muted)]/20",
-          horizontalSizes[size].className,
-          "w-44 max-w-[min(100%,280px)] md:w-56",
-          className
-        )}
-        aria-hidden
-      />
-    );
-  }
-
   if (compact) {
     return (
       <Link
@@ -96,7 +57,7 @@ export function ImageMark({
       )}
     >
       <Image
-        src={horizontalSrc}
+        src={brandAssets.logoHorizontalDark}
         alt="BeaconFlame Innovations"
         width={dim.width}
         height={dim.height}
