@@ -375,18 +375,18 @@ export function CoreNetwork({
         <MattatzFireCore
           lowPower={lowPower}
           colorHex={flamePurple}
-          position={[0, 1.40, 0]}
+          position={[0, 1.70, 0]}
           scale={
             lowPower
               ? [
-                  0.48 * flameCoreScale,
-                  2.45 * flameCoreScale,
-                  0.18 * flameCoreScale,
+                  2.48 * flameCoreScale,
+                  3.45 * flameCoreScale,
+                  2.18 * flameCoreScale,
                 ]
               : [
-                  0.52 * flameCoreScale,
-                  2.75 * flameCoreScale,
-                  0.52 * flameCoreScale,
+                  4.52 * flameCoreScale,
+                  3.75 * flameCoreScale,
+                  4.52 * flameCoreScale,
                 ]
           }
         />

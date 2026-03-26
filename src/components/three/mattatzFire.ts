@@ -216,3 +216,140 @@ export function updateMattatzFireUniforms(
   mat.uniforms.time.value = time;
   mat.uniforms.scale.value.copy(mesh.scale);
 }
+
+/**
+ * Logo flame shader: alpha-masked heat distortion + emissive flame.
+ * Ported from `animation-tool/src/flame.js`, adapted to Three.js geometry with UVs.
+ */
+export const logoFlameVertexShader = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+export const logoFlameFragmentShader = /* glsl */ `
+  precision mediump float;
+
+  varying vec2 vUv;
+  uniform sampler2D uTex;
+  uniform float uTime;
+  uniform float uIntensity;
+
+  float hash21(vec2 p){
+    p = fract(p * vec2(123.34, 345.45));
+    p += dot(p, p + 34.345);
+    return fract(p.x * p.y);
+  }
+
+  float noise(vec2 p){
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    float a = hash21(i);
+    float b = hash21(i + vec2(1.0, 0.0));
+    float c = hash21(i + vec2(0.0, 1.0));
+    float d = hash21(i + vec2(1.0, 1.0));
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+  }
+
+  float fbm(vec2 p){
+    float v = 0.0;
+    float a = 0.5;
+    for(int i=0;i<4;i++){
+      v += a * noise(p);
+      p = p * 2.02 + vec2(13.1, 7.7);
+      a *= 0.5;
+    }
+    return v;
+  }
+
+  void main(){
+    vec2 imgUv = vUv;
+    float I = clamp(uIntensity, 0.0, 1.0);
+
+    vec4 base0 = texture2D(uTex, imgUv);
+    float mask0 = base0.a;
+    if(mask0 <= 0.001){
+      gl_FragColor = vec4(0.0);
+      return;
+    }
+
+    float bottom = pow(1.0 - imgUv.y, 1.55);
+
+    float n1 = fbm(vec2(imgUv.x * 3.2, imgUv.y * 6.0 - uTime * (0.65 + 1.2 * I)));
+    float n2 = fbm(vec2(imgUv.x * 6.0 + 2.0, imgUv.y * 10.0 - uTime * (1.1 + 2.1 * I)));
+    float n = mix(n1, n2, 0.5);
+
+    float dy = (n - 0.5) * (0.014 + 0.060 * I) * bottom;
+    float dx = (fbm(vec2(imgUv.y * 3.0, imgUv.x * 3.0 + uTime * 0.35)) - 0.5) * (0.004 + 0.014 * I) * bottom;
+    vec2 duv = imgUv + vec2(dx, -abs(dy));
+
+    vec4 base = texture2D(uTex, duv);
+    float mask = base.a;
+    if(mask <= 0.001){
+      gl_FragColor = vec4(0.0);
+      return;
+    }
+
+    float flameNoise = fbm(vec2(imgUv.x * 4.0, imgUv.y * 8.5 - uTime * (0.9 + 1.8 * I)));
+    float flame = smoothstep(0.18, 0.88, bottom + (flameNoise - 0.5) * (0.55 + 0.9 * I));
+    flame *= smoothstep(0.0, 0.95, 1.0 - imgUv.y);
+    flame *= (0.35 + 0.65 * mask);
+
+    vec3 c1 = vec3(1.00, 0.28, 0.05);
+    vec3 c2 = vec3(1.00, 0.74, 0.10);
+    vec3 c3 = vec3(1.00, 0.98, 0.88);
+    float hot = clamp(flameNoise * 1.25, 0.0, 1.0);
+    vec3 flameCol = mix(c1, c2, smoothstep(0.0, 0.8, hot));
+    flameCol = mix(flameCol, c3, smoothstep(0.72, 1.0, hot));
+
+    float edge = smoothstep(0.10, 0.70, mask) - smoothstep(0.70, 0.98, mask);
+    edge = clamp(edge, 0.0, 1.0);
+
+    float burn = flame * (0.30 + 0.85 * I);
+    vec3 col = base.rgb * (1.0 - burn * 0.45) + flameCol * burn;
+
+    float glow = (burn * 0.20 + edge * (0.10 + 0.35 * I)) * (0.55 + 0.45 * bottom);
+    col += flameCol * glow;
+
+    float outA = clamp(mask + glow * 0.35, 0.0, 1.0);
+    gl_FragColor = vec4(col, outA);
+  }
+`;
+
+export function createLogoFlameMaterial(
+  tex: THREE.Texture,
+  options?: { intensity?: number }
+): THREE.ShaderMaterial {
+  tex.wrapS = THREE.ClampToEdgeWrapping;
+  tex.wrapT = THREE.ClampToEdgeWrapping;
+  tex.minFilter = THREE.LinearFilter;
+  tex.magFilter = THREE.LinearFilter;
+  tex.colorSpace = THREE.SRGBColorSpace;
+
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      uTex: { value: tex },
+      uTime: { value: 0 },
+      uIntensity: { value: options?.intensity ?? 0.8 },
+    },
+    vertexShader: logoFlameVertexShader,
+    fragmentShader: logoFlameFragmentShader,
+    transparent: true,
+    depthWrite: false,
+    depthTest: true,
+    side: THREE.DoubleSide,
+  });
+}
+
+export function updateLogoFlameUniforms(
+  mesh: THREE.Mesh,
+  time: number,
+  intensity01: number
+) {
+  const mat = mesh.material as THREE.ShaderMaterial;
+  mat.uniforms.uTime.value = time;
+  mat.uniforms.uIntensity.value = THREE.MathUtils.clamp(intensity01, 0, 1);
+}

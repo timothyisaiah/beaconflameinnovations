@@ -3,14 +3,12 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { useTexture } from "@react-three/drei";
 import { useScrollProgress } from "@/contexts/ScrollProgressContext";
 import {
-  createFireRampTexture,
-  createMattatzFireMaterial,
-  updateMattatzFireUniforms,
+  createLogoFlameMaterial,
+  updateLogoFlameUniforms,
 } from "./mattatzFire";
-
-const _inv = /* @__PURE__ */ new THREE.Matrix4();
 
 export function MattatzFireCore({
   lowPower,
@@ -25,22 +23,13 @@ export function MattatzFireCore({
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const { progressRef } = useScrollProgress();
-  const flameColor = useMemo(() => new THREE.Color(colorHex), [colorHex]);
-
-  const texture = useMemo(() => createFireRampTexture(), []);
+  const logoTex = useTexture("/assets/logo-mark.png");
 
   const material = useMemo(() => {
-    return createMattatzFireMaterial(texture, flameColor, {
-      iterations: lowPower ? 12 : 20,
-      octives: 3,
+    return createLogoFlameMaterial(logoTex, {
+      intensity: lowPower ? 0.68 : 0.82,
     });
-  }, [texture, flameColor, lowPower]);
-
-  useEffect(() => {
-    return () => {
-      texture.dispose();
-    };
-  }, [texture]);
+  }, [logoTex, lowPower]);
 
   useEffect(() => {
     return () => {
@@ -50,16 +39,18 @@ export function MattatzFireCore({
 
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
-    updateMattatzFireUniforms(meshRef.current, clock.elapsedTime, _inv);
-    const mat = meshRef.current.material as THREE.ShaderMaterial;
     const p = progressRef.current;
     const expand = THREE.MathUtils.smoothstep(p, 0.18, 0.55);
-    mat.uniforms.color.value.copy(flameColor).multiplyScalar(0.82 + expand * 0.58);
+    updateLogoFlameUniforms(
+      meshRef.current,
+      clock.elapsedTime,
+      (lowPower ? 0.68 : 0.82) + expand * 0.14
+    );
   });
 
   return (
     <mesh ref={meshRef} material={material} position={position} scale={scale}>
-      <boxGeometry args={[1, 1, 1]} />
+      <planeGeometry args={[1, 1, 1, 1]} />
     </mesh>
   );
 }
