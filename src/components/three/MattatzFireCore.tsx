@@ -21,9 +21,11 @@ export function MattatzFireCore({
   position?: [number, number, number];
   scale?: [number, number, number];
 }) {
+  void colorHex;
   const meshRef = useRef<THREE.Mesh>(null);
   const { progressRef } = useScrollProgress();
-  const logoTex = useTexture("/assets/logo-mark.png");
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const logoTex = useTexture(`${basePath}/assets/logo-mark.png`);
 
   const material = useMemo(() => {
     return createLogoFlameMaterial(logoTex, {
