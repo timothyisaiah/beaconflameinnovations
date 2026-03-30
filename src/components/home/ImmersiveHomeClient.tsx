@@ -35,26 +35,26 @@ function ImmersiveInner() {
   const lowPower = reducedMotion || isMobile;
 
   return (
-    <div className="relative min-h-screen bg-[#0a0610] text-[#f4f0f8]">
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden>
-        <div className="absolute inset-0 bg-[#020203]" />
+        <div className="absolute inset-0 bg-[var(--background)]" />
         {!ready || reducedMotion ? (
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 90% 70% at 50% 22%, rgba(135,21,140,0.14), transparent 58%), radial-gradient(ellipse 75% 55% at 70% 60%, rgba(135,21,140,0.06), transparent 55%), #020203",
+                "radial-gradient(ellipse 90% 72% at 50% 20%, rgba(135,21,140,0.16), transparent 58%), radial-gradient(ellipse 78% 58% at 72% 62%, rgba(135,21,140,0.07), transparent 55%), #131218",
             }}
           />
         ) : (
           <>
             <BeaconCanvas lowPower={lowPower} colorMode="dark" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#020203]/95 via-[#0a0610]/45 to-[#0a0610]/90 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#131218]/88 via-[#131218]/48 to-[#131218]/82 pointer-events-none" />
             <div
-              className="absolute inset-0 opacity-[0.2] pointer-events-none"
+              className="absolute inset-0 opacity-[0.22] pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 55% at 50% 35%, rgba(135,21,140,0.28), transparent 60%)",
+                  "radial-gradient(ellipse 72% 56% at 50% 34%, rgba(135,21,140,0.22), transparent 62%)",
               }}
             />
           </>

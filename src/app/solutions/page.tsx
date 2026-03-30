@@ -22,11 +22,11 @@ function SolutionCard({
   useCases: string[];
 }) {
   return (
-    <div className="p-6 rounded-xl border border-[#f5f0e8] hover:border-[#87158c]/30 bg-white hover:shadow-lg transition-all duration-300">
-      <h3 className="text-lg font-display font-semibold text-[#0f172a] mb-2">
+    <div className="p-6 rounded-xl border border-[var(--card-border)] hover:border-[#87158c]/35 bg-[var(--card)] hover:shadow-lg hover:shadow-black/20 transition-all duration-300">
+      <h3 className="text-lg font-display font-semibold text-[var(--foreground)] mb-2">
         {title}
       </h3>
-      <p className="text-[#1e293b]/80 text-sm mb-4">{description}</p>
+      <p className="text-[var(--muted)] text-sm mb-4">{description}</p>
       <ul className="space-y-1">
         {useCases.map((uc) => (
           <li key={uc} className="text-sm text-[#87158c] flex items-center gap-2">
@@ -59,10 +59,10 @@ function SolutionSection({
           >
             {title.split(" ")[0]}
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0f172a] mb-4">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--foreground)] mb-4">
             {title}
           </h2>
-          <p className="text-lg text-[#1e293b]/80 max-w-2xl">{description}</p>
+          <p className="text-lg text-[var(--muted)] max-w-2xl">{description}</p>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -81,16 +81,20 @@ export default function SolutionsPage() {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section className="py-20 bg-[#0f172a]">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative overflow-hidden border-b border-white/[0.06] bg-gradient-to-b from-[#1c1a26] via-[var(--background)] to-[var(--background)] py-20">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-5%,rgba(135,21,140,0.14),transparent_65%)]"
+          aria-hidden
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
           <AnimatedSection>
             <p className="text-[#87158c] font-medium tracking-widest uppercase text-sm mb-4">
               Solutions
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-[var(--foreground)] mb-6">
               Integrated Solutions Across Industries
             </h1>
-            <p className="text-xl text-[#faf8f5]/80 max-w-2xl">
+            <p className="text-xl text-[var(--muted)] max-w-2xl">
               From software platforms to mobile banking, from smart farming to
               payment infrastructure—we deliver technology-driven solutions that
               scale.
@@ -104,16 +108,16 @@ export default function SolutionsPage() {
         title={technologySolutions.title}
         description={technologySolutions.description}
         items={technologySolutions.items}
-        accent="bg-blue-100 text-blue-800"
+        accent="bg-blue-500/15 text-blue-200"
       />
 
       {/* Fintech Solutions */}
-      <section className="bg-[#faf8f5]">
+      <section className="bg-[var(--surface-raised)]">
         <SolutionSection
           title={fintechSolutions.title}
           description={fintechSolutions.description}
           items={fintechSolutions.items}
-          accent="bg-emerald-100 text-emerald-800"
+          accent="bg-emerald-500/15 text-emerald-200"
         />
       </section>
 
@@ -122,7 +126,7 @@ export default function SolutionsPage() {
         title={agroSolutions.title}
         description={agroSolutions.description}
         items={agroSolutions.items}
-        accent="bg-amber-100 text-amber-800"
+        accent="bg-amber-500/15 text-amber-200"
       />
     </div>
   );

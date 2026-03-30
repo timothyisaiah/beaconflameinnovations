@@ -16,7 +16,7 @@ export function BeaconScene({
   const { progressRef } = useScrollProgress();
   const target = useRef(new THREE.Vector3(0, 0.2, 0));
   const isLight = colorMode === "light";
-  const bg = isLight ? "#f8f5ef" : "#020304";
+  const bg = isLight ? "#f8f5ef" : "#14141d";
 
   useFrame((state) => {
     const p = progressRef.current;

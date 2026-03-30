@@ -30,16 +30,20 @@ export default function SustainabilityPage() {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section className="py-20 bg-[#0f172a]">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative overflow-hidden border-b border-white/[0.06] bg-gradient-to-b from-[#1c1a26] via-[var(--background)] to-[var(--background)] py-20">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-5%,rgba(135,21,140,0.14),transparent_65%)]"
+          aria-hidden
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
           <AnimatedSection>
             <p className="text-[#87158c] font-medium tracking-widest uppercase text-sm mb-4">
               Sustainability & Innovation
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-[#faf8f5] mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-[var(--foreground)] mb-6">
               Technology-Driven Sustainability
             </h1>
-            <p className="text-xl text-[#faf8f5]/80 max-w-2xl">
+            <p className="text-xl text-[var(--muted)] max-w-2xl">
               We believe innovation and sustainability are inseparable. Our
               solutions are built to create lasting positive impact for people
               and the planet.
@@ -49,13 +53,13 @@ export default function SustainabilityPage() {
       </section>
 
       {/* Pillars */}
-      <section className="py-24 bg-[#faf8f5]">
+      <section className="py-24 bg-[var(--surface-raised)]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-[#0f172a] mb-6">
+            <h2 className="text-4xl font-display font-bold text-[var(--foreground)] mb-6">
               Our Sustainability Focus
             </h2>
-            <p className="text-lg text-[#1e293b]/80 max-w-2xl mx-auto">
+            <p className="text-lg text-[var(--muted)] max-w-2xl mx-auto">
               From farm to table, from code to deployment—sustainability is
               embedded in everything we do.
             </p>
@@ -64,10 +68,10 @@ export default function SustainabilityPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {sustainabilityPillars.map((pillar) => (
               <AnimatedSection key={pillar.title}>
-                <div className="p-8 bg-white rounded-2xl border border-[#f5f0e8] hover:border-[#87158c]/30 h-full transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-[#87158c]/10 flex items-center justify-center mb-6">
+                <div className="p-8 bg-[var(--card)] rounded-2xl border border-[var(--card-border)] hover:border-[#87158c]/35 h-full transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#87158c]/20 flex items-center justify-center mb-6">
                     <svg
-                      className="w-6 h-6 text-[#87158c]"
+                      className="w-6 h-6 text-[#c084fc]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -80,10 +84,10 @@ export default function SustainabilityPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-display font-semibold text-[#0f172a] mb-3">
+                  <h3 className="text-xl font-display font-semibold text-[var(--foreground)] mb-3">
                     {pillar.title}
                   </h3>
-                  <p className="text-[#1e293b]/80 leading-relaxed">
+                  <p className="text-[var(--muted)] leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -94,13 +98,17 @@ export default function SustainabilityPage() {
       </section>
 
       {/* Impact Statement */}
-      <section className="py-24 bg-[#0f172a]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="relative overflow-hidden border-t border-white/[0.06] bg-gradient-to-b from-[#1a2420] via-[var(--background)] to-[var(--background)] py-24">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(52,211,153,0.08),transparent_58%)]"
+          aria-hidden
+        />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl font-display font-bold text-[#faf8f5] mb-6">
+            <h2 className="text-3xl font-display font-bold text-[var(--foreground)] mb-6">
               Building a Greener Future
             </h2>
-            <p className="text-[#faf8f5]/80 text-lg leading-relaxed mb-8">
+            <p className="text-[var(--muted)] text-lg leading-relaxed mb-8">
               Every solution we deploy is evaluated for its environmental
               footprint. We partner with farmers, institutions, and communities
               to create systems that regenerate rather than deplete—ensuring

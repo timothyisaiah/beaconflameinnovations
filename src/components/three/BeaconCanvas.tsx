@@ -12,7 +12,7 @@ export function BeaconCanvas({
   lowPower?: boolean;
   colorMode?: "light" | "dark";
 }) {
-  const bg = colorMode === "light" ? "#f8f5ef" : "#020304";
+  const bg = colorMode === "light" ? "#f8f5ef" : "#14141d";
 
   return (
     <Canvas

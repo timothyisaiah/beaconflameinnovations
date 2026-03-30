@@ -2,34 +2,38 @@
 
 /* Brand: primary #87158C (dark-mode identity), secondary #FAF9F6 (light canvas) */
 :root {
-  --background: #faf9f6;
-  --foreground: #1a1520;
-  --muted: #5c5560;
+  /* Warm off-white canvas — easier on the eyes than pure white or near-black */
+  --background: #f7f4ef;
+  --foreground: #17131d;
+  --muted: #5e5866;
   --brand: #87158c;
   --brand-hover: #9d2a9f;
-  --header-bg: rgba(250, 249, 246, 0.92);
+  --header-bg: rgba(247, 244, 239, 0.92);
   --border-subtle: rgba(135, 21, 140, 0.14);
   --card: #ffffff;
   --card-border: rgba(135, 21, 140, 0.12);
+  --surface-raised: #ebe8e2;
 }
 
+/* Dark: soft charcoal + warm ambient light (Tiempo-like — not pure black) */
 html.dark {
-  --background: #0a0610;
-  --foreground: #f4f0f8;
-  --muted: #a8a0b0;
+  --background: #131218;
+  --foreground: #f4f2f7;
+  --muted: #a39dab;
   --brand: #87158c;
-  --brand-hover: #a855c8;
-  --header-bg: rgba(10, 6, 16, 0.92);
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --card: #100818;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --brand-hover: #b46aba;
+  --header-bg: rgba(19, 18, 24, 0.88);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --card: #1c1a24;
+  --card-border: rgba(255, 255, 255, 0.07);
+  --surface-raised: #1f1d28;
 }
 
 @theme inline {
   --color-primary: #87158c;
   --color-primary-hover: #9d2a9f;
-  --color-secondary: #faf9f6;
-  --color-charcoal: #0b0c10;
+  --color-secondary: #f7f4ef;
+  --color-charcoal: #131218;
 
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
