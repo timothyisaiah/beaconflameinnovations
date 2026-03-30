@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "optimize:images": "node scripts/optimize-capability-images.mjs",
+    "build": "npm run optimize:images && next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -28,6 +29,7 @@
     "@types/three": "^0.183.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.7",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

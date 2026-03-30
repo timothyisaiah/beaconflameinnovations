@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { capabilities } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 export function Capabilities() {
-  const [open, setOpen] = useState<string | null>(capabilities[0]?.id ?? null);
-
   return (
     <section
       id="capabilities"
@@ -31,69 +29,51 @@ export function Capabilities() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
-          {capabilities.map((cap, index) => {
-            const isOpen = open === cap.id;
-            return (
-              <motion.article
-                key={cap.id}
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: index * 0.04 }}
+        <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+          {capabilities.map((cap, index) => (
+            <motion.article
+              key={cap.id}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: index * 0.04 }}
+              className={cn(
+                "group flex flex-col overflow-hidden rounded-2xl border border-[#87158c]/15 bg-white/95 backdrop-blur-md",
+                "shadow-sm shadow-[#87158c]/[0.06] dark:shadow-none",
+                "dark:border-white/[0.08] dark:bg-[#0b0c10]/80",
+                "hover:border-[#87158c]/35 dark:hover:border-[#87158c]/25 transition-colors duration-300"
+              )}
+            >
+              <div
                 className={cn(
-                  "rounded-2xl border border-[#87158c]/15 bg-white/95 backdrop-blur-md overflow-hidden",
-                  "dark:border-white/[0.08] dark:bg-[#0b0c10]/80",
-                  "hover:border-[#87158c]/35 dark:hover:border-[#87158c]/25 transition-colors duration-300"
+                  "relative aspect-[5/3] w-full shrink-0 overflow-hidden bg-[#f4f0f8]",
+                  "dark:bg-[#12141a]"
                 )}
               >
-                <button
-                  type="button"
-                  onClick={() => setOpen(isOpen ? null : cap.id)}
-                  className="w-full text-left px-6 py-6 md:px-7 md:py-7 flex items-start justify-between gap-4"
-                >
-                  <div>
-                    <h3 className="font-display text-xl text-[#1a1520] dark:text-[#f4f0f8] font-semibold">
-                      {cap.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-[#5c5560] dark:text-[#9aa3b2] leading-relaxed">
-                      {cap.summary}
-                    </p>
-                  </div>
-                  <span
-                    className={cn(
-                      "mt-1 shrink-0 text-[#87158c] text-sm transition-transform",
-                      isOpen && "rotate-90"
-                    )}
-                    aria-hidden
-                  >
-                    ▸
-                  </span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      className="border-t border-[#87158c]/15 dark:border-white/10"
-                    >
-                      <ul className="px-6 md:px-7 pb-6 md:pb-7 pt-4 space-y-2 text-sm text-[#4a4455] dark:text-[#c8cdd8]">
-                        {cap.points.map((pt) => (
-                          <li key={pt} className="flex gap-2">
-                            <span className="text-[#87158c]/80 mt-0.5">/</span>
-                            <span>{pt}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.article>
-            );
-          })}
+                <Image
+                  src={cap.image}
+                  alt=""
+                  role="presentation"
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0c10]/35 via-transparent to-transparent"
+                  aria-hidden
+                />
+              </div>
+              <div className="px-6 py-5 md:px-7 md:py-6">
+                <h3 className="font-display text-lg font-semibold tracking-tight text-[#1a1520] md:text-xl dark:text-[#f4f0f8]">
+                  {cap.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#5c5560] dark:text-[#9aa3b2]">
+                  {cap.summary}
+                </p>
+              </div>
+b             </motion.article>
+          ))}
         </div>
       </div>
     </section>

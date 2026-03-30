@@ -1,7 +1,10 @@
+const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const capabilities = [
   {
     id: "ai-systems",
     title: "AI Systems",
+    image: `${assetBase}/assets/cap/ai-systems.webp`,
     summary:
       "Applied AI, model-enabled business systems, and intelligent workflow automation embedded where decisions and throughput matter.",
     points: [
@@ -14,6 +17,7 @@ export const capabilities = [
   {
     id: "agentic",
     title: "AI Agents & Agentic AI",
+    image: `${assetBase}/assets/cap/ai-agents.webp`,
     summary:
       "Autonomous workflows, multi-agent orchestration, and digital workers designed for operations, service, analysis, and decision support.",
     points: [
@@ -26,6 +30,7 @@ export const capabilities = [
   {
     id: "engineering",
     title: "Software Engineering",
+    image: `${assetBase}/assets/cap/engineering.webp`,
     summary:
       "Platform engineering, modern architecture, and disciplined product delivery across web, mobile, and enterprise systems.",
     points: [
@@ -38,6 +43,7 @@ export const capabilities = [
   {
     id: "data",
     title: "Data & Analytics",
+    image: `${assetBase}/assets/cap/data-analytics.webp`,
     summary:
       "Analytics platforms, BI, pipelines, and product analytics that make operational and strategic signal legible.",
     points: [
@@ -50,6 +56,7 @@ export const capabilities = [
   {
     id: "consultancy",
     title: "Technology Consultancy",
+    image: `${assetBase}/assets/cap/consultancy.webp`,
     summary:
       "Product strategy, systems design, transformation, advisory, due diligence, and long-range technology planning.",
     points: [
