@@ -72,7 +72,7 @@ export function Capabilities() {
                   {cap.summary}
                 </p>
               </div>
-b             </motion.article>
+             </motion.article>
           ))}
         </div>
       </div>
