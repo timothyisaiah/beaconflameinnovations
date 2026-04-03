@@ -7,20 +7,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/data/site";
 import { ImageMark } from "@/components/layout/ImageMark";
 import { cn } from "@/lib/utils";
+import { buttonClassName } from "@/lib/button-styles";
 
 function isActivePath(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
+  if (href.startsWith("/#")) return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
+
+const navLinkClass = (active: boolean) =>
+  cn(
+    "text-sm font-medium transition-colors duration-200 relative rounded-sm",
+    active
+      ? "text-[var(--accent)] font-semibold after:absolute after:left-0 after:-bottom-1 after:right-0 after:h-0.5 after:rounded-full after:bg-[var(--accent)]"
+      : "text-[var(--muted)] hover:text-[var(--foreground-secondary)]",
+  );
 
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--header-bg)] backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
       <nav
-        className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6"
+        className="mx-auto flex max-w-[var(--container-max)] items-center justify-between gap-6 px-[var(--container-padding)] py-4"
         aria-label="Primary"
       >
         <span className="hidden md:inline-flex">
@@ -30,7 +40,7 @@ export function Header() {
           <ImageMark compact />
         </span>
 
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+        <div className="hidden items-center gap-6 lg:gap-8 md:flex">
           {navLinks.map((link) => {
             const active = isActivePath(pathname, link.href);
             return (
@@ -38,12 +48,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={cn(
-                  "text-sm font-medium transition-colors duration-300 relative",
-                  active
-                    ? "text-[#87158c] font-semibold after:absolute after:left-0 after:-bottom-1 after:right-0 after:h-0.5 after:rounded-full after:bg-[#87158c]"
-                    : "text-[var(--muted)] hover:text-[#87158c]",
-                )}
+                className={navLinkClass(active)}
               >
                 {link.label}
               </Link>
@@ -52,30 +57,33 @@ export function Header() {
           <Link
             href="/contact"
             className={cn(
-              "px-5 py-2.5 rounded-full font-semibold transition-colors duration-300",
-              isActivePath(pathname, "/contact")
-                ? "bg-[#87158c] text-white ring-2 ring-[#87158c] ring-offset-2 ring-offset-[var(--background)]"
-                : "bg-[#87158c] text-white hover:bg-[var(--brand-hover)]",
+              buttonClassName("primary", "md"),
+              isActivePath(pathname, "/contact") &&
+                "ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-[var(--ring-offset)]",
             )}
           >
-            Engage
+            Book a technical consultation
           </Link>
         </div>
 
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[var(--foreground)]"
+            className={cn(
+              "rounded-md p-2 text-[var(--foreground)]",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]",
+            )}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden
             >
               {mobileMenuOpen ? (
                 <path
@@ -104,9 +112,9 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[var(--background)] border-t border-[var(--border-subtle)]"
+            className="border-t border-[var(--border)] bg-[var(--bg)] md:hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="flex flex-col gap-4 px-[var(--container-padding)] py-4">
               {navLinks.map((link) => {
                 const active = isActivePath(pathname, link.href);
                 return (
@@ -118,8 +126,8 @@ export function Header() {
                     className={cn(
                       "font-medium transition-colors",
                       active
-                        ? "text-[#87158c] font-semibold border-l-2 border-[#87158c] pl-3 -ml-3"
-                        : "text-[var(--foreground)]/90 hover:text-[#87158c]",
+                        ? "-ml-3 border-l-2 border-[var(--accent)] pl-3 font-semibold text-[var(--accent)]"
+                        : "text-[var(--foreground)]/90 hover:text-[var(--accent)]",
                     )}
                   >
                     {link.label}
@@ -130,12 +138,13 @@ export function Header() {
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "mt-2 px-5 py-3 rounded-full bg-[#87158c] text-white font-semibold text-center transition-colors",
+                  buttonClassName("primary", "md"),
+                  "mt-2 text-center",
                   isActivePath(pathname, "/contact") &&
-                    "ring-2 ring-[#87158c] ring-offset-2 ring-offset-[var(--background)]",
+                    "ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-[var(--ring-offset)]",
                 )}
               >
-                Engage
+                Book a technical consultation
               </Link>
             </div>
           </motion.div>

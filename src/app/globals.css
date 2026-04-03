@@ -1,42 +1,145 @@
 @import "tailwindcss";
 
-/* Brand: primary #87158C (dark-mode identity), secondary #FAF9F6 (light canvas) */
+/*
+  Beacon Flame — design tokens (dark-first)
+  Use semantic names in components: var(--bg), var(--accent), etc.
+  Legacy aliases (--background, --card, …) kept for gradual migration.
+*/
+
 :root {
-  /* Warm off-white canvas — easier on the eyes than pure white or near-black */
-  --background: #f7f4ef;
-  --foreground: #17131d;
-  --muted: #5e5866;
-  --brand: #87158c;
-  --brand-hover: #9d2a9f;
-  --header-bg: rgba(247, 244, 239, 0.92);
-  --border-subtle: rgba(135, 21, 140, 0.14);
-  --card: #ffffff;
-  --card-border: rgba(135, 21, 140, 0.12);
-  --surface-raised: #ebe8e2;
+  color-scheme: dark;
+
+  /* Canvas */
+  --bg: #0b0d10;
+  --bg-subtle: #0e1015;
+  --surface: #13161c;
+  --surface-raised: #1a1d26;
+  --surface-elevated: #21252f;
+
+  /* Text */
+  --foreground: #f2f4f7;
+  --foreground-secondary: #c4cad4;
+  --muted: #8b95a8;
+  --muted-faint: #5c6575;
+
+  /* Accent — brand purple (primary actions, links, focus) */
+  --accent: #87158c;
+  --accent-hover: #9d2a9f;
+  --accent-foreground: #ffffff;
+  --accent-muted: rgba(135, 21, 140, 0.18);
+  --accent-subtle: rgba(135, 21, 140, 0.09);
+
+  /* Accent — amber (emphasis, highlights; use sparingly) */
+  --accent-warm: #d97706;
+  --accent-warm-hover: #b45309;
+  --accent-warm-muted: rgba(217, 119, 6, 0.12);
+
+  /* Borders & focus */
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.11);
+  --ring: var(--accent);
+  --ring-offset: var(--bg);
+
+  /* Chrome */
+  --header-bg: rgba(11, 13, 16, 0.88);
+  --footer-bg: var(--bg-subtle);
+
+  /* Legacy aliases (prefer tokens above in new code) */
+  --background: var(--bg);
+  --foreground-legacy: var(--foreground);
+  --card: var(--surface);
+  --card-border: var(--border);
+  --border-subtle: var(--border);
+  --surface-raised-legacy: var(--surface-raised);
+  --brand: var(--accent);
+  --brand-hover: var(--accent-hover);
+
+  /* Typography scale (rem) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.06em;
+
+  /* Spacing scale (4px base; pair with Tailwind where useful) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --container-max: 80rem;
+  --container-padding: 1.5rem;
+  --section-y-sm: 3rem;
+  --section-y-md: 4rem;
+  --section-y-lg: 5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
 }
 
-/* Dark: soft charcoal + warm ambient light (Tiempo-like — not pure black) */
-html.dark {
-  --background: #131218;
-  --foreground: #f4f2f7;
-  --muted: #a39dab;
-  --brand: #87158c;
-  --brand-hover: #b46aba;
-  --header-bg: rgba(19, 18, 24, 0.88);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --card: #1c1a24;
-  --card-border: rgba(255, 255, 255, 0.07);
-  --surface-raised: #1f1d28;
+/* Optional light surface (editorial / print); default site remains dark-first */
+html.light {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --bg-subtle: #eef0f4;
+  --surface: #ffffff;
+  --surface-raised: #f0f2f6;
+  --surface-elevated: #e8ebf0;
+  --foreground: #0f1218;
+  --foreground-secondary: #3d4451;
+  --muted: #5c6575;
+  --muted-faint: #8b929e;
+  --border: rgba(15, 18, 24, 0.09);
+  --border-strong: rgba(15, 18, 24, 0.14);
+  --ring-offset: var(--bg);
+  --header-bg: rgba(246, 247, 249, 0.92);
+  --footer-bg: var(--bg-subtle);
+  --accent-muted: rgba(135, 21, 140, 0.12);
+  --accent-subtle: rgba(135, 21, 140, 0.06);
+  --accent-warm-muted: rgba(217, 119, 6, 0.1);
+  --background: var(--bg);
+  --card: var(--surface);
+  --card-border: var(--border);
+  --border-subtle: var(--border);
 }
 
 @theme inline {
-  --color-primary: #87158c;
-  --color-primary-hover: #9d2a9f;
-  --color-secondary: #f7f4ef;
-  --color-charcoal: #131218;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-warm: var(--accent-warm);
 
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-section-sm: var(--section-y-sm);
+  --spacing-section-md: var(--section-y-md);
+  --spacing-section-lg: var(--section-y-lg);
 }
 
 * {
@@ -48,9 +151,11 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: var(--bg);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -59,27 +164,107 @@ body {
   }
 }
 
+/* Focus: visible, high-contrast ring */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Design system utilities */
+.ds-prose {
+  max-width: 65ch;
+}
+
+.ds-heading-display {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 4vw + 1rem, var(--text-5xl));
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.ds-heading-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+.ds-heading-2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+.ds-heading-3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+.ds-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--foreground-secondary);
+}
+
+.ds-body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--muted);
+}
+
+.ds-eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-font-display {
+  font-family: var(--font-display);
+}
+
+.ds-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.ds-link:hover {
+  color: var(--accent-hover);
+}
+
+.ds-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #87158c33;
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
   border-radius: 4px;
 }
 
-html.dark ::-webkit-scrollbar-thumb {
-  background: #ffffff33;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #87158c55;
-}
-
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff44;
+  background: color-mix(in srgb, var(--muted) 65%, transparent);
 }

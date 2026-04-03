@@ -33,7 +33,7 @@ export function Vision() {
               className="font-display text-3xl md:text-[2.35rem] text-[#1a1520] dark:text-[#f4f0f8] font-semibold tracking-tight leading-tight"
             >
               We are not chasing trends. We are building enduring systems,
-              capabilities, and partnerships.
+              solutions, and partnerships.
             </h2>
             <p className="mt-8 text-lg text-[#4a4455] dark:text-[#c8cdd8]/95 leading-relaxed">
               The work is measured in reliability, adaptability, and trust over

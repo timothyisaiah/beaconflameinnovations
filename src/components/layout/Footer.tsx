@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { ImageMark } from "@/components/layout/ImageMark";
+import { Container } from "@/components/ds/Container";
 import { siteConfig } from "@/data/site";
 
 const footerLinks = {
   company: [
     { href: "/about", label: "About" },
-    { href: "/capabilities", label: "Capabilities" },
+    { href: "/solutions", label: "Solutions" },
+    { href: "/process", label: "Process" },
     { href: "/partnerships", label: "Partnerships" },
   ],
   connect: [{ href: "/contact", label: "Contact" }],
@@ -20,23 +22,25 @@ const socialLinks = [
   { href: "#", label: "Twitter" },
 ];
 
+const linkClass =
+  "text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)] focus:outline-none focus-visible:rounded-sm focus-visible:text-[var(--accent)] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]";
+
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border-subtle)] bg-[var(--background)] text-[var(--foreground)]">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+    <footer
+      className="border-t border-[var(--border)] bg-[var(--footer-bg)] text-[var(--foreground)]"
+      role="contentinfo"
+    >
+      <Container className="py-16">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <ImageMark size="lg" className="mb-5" />
-            <p className="text-[var(--muted)] text-sm leading-relaxed max-w-md">
+            <p className="max-w-md text-sm leading-relaxed text-[var(--muted)]">
               {siteConfig.description}
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="text-[var(--muted)] hover:text-[#87158c] transition-colors text-sm"
-                >
+                <a key={social.label} href={social.href} className={linkClass}>
                   {social.label}
                 </a>
               ))}
@@ -44,16 +48,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-[var(--foreground)] mb-4 text-sm tracking-wide">
+            <p className="mb-4 text-sm font-semibold tracking-wide text-[var(--foreground)]">
               Company
-            </h4>
+            </p>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--muted)] hover:text-[#87158c] transition-colors"
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -62,16 +63,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-[var(--foreground)] mb-4 text-sm tracking-wide">
+            <p className="mb-4 text-sm font-semibold tracking-wide text-[var(--foreground)]">
               Connect
-            </h4>
+            </p>
             <ul className="space-y-3">
               {footerLinks.connect.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--muted)] hover:text-[#87158c] transition-colors"
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -80,16 +78,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-[var(--foreground)] mb-4 text-sm tracking-wide">
+            <p className="mb-4 text-sm font-semibold tracking-wide text-[var(--foreground)]">
               Legal
-            </h4>
+            </p>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--muted)] hover:text-[#87158c] transition-colors"
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -98,16 +93,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[var(--border-subtle)] flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--border)] pt-8 md:flex-row">
           <p className="text-sm text-[var(--muted)]">
             © {new Date().getFullYear()} {siteConfig.legalName}. All rights
             reserved.
           </p>
           <p className="text-sm text-[var(--muted)]">
-            Engineering • Intelligence • Strategy 
+            Production systems · Architecture · Measurable delivery
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

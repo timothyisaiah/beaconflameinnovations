@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
+import { INNER_PAGE_HERO_TOP_CLASS } from "@/lib/inner-page-layout";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Sustainability & Innovation",
@@ -28,9 +30,15 @@ const sustainabilityPillars = [
 
 export default function SustainabilityPage() {
   return (
-    <div className="pt-24">
+    <div>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/[0.06] bg-gradient-to-b from-[#1c1a26] via-[var(--background)] to-[var(--background)] py-20">
+      <section
+        className={cn(
+          "relative overflow-hidden border-b border-white/[0.06] bg-gradient-to-b from-[#1c1a26] via-[var(--background)] to-[var(--background)]",
+          INNER_PAGE_HERO_TOP_CLASS,
+          "pb-20",
+        )}
+      >
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-5%,rgba(135,21,140,0.14),transparent_65%)]"
           aria-hidden

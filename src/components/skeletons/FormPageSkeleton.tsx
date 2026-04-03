@@ -5,7 +5,7 @@ export function FormPageSkeleton({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[var(--background)] animate-pulse pt-28 pb-24 px-6",
+        "min-h-screen bg-[var(--bg)] animate-pulse pt-24 pb-24 px-6",
         className
       )}
     >

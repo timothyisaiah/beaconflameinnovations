@@ -15,7 +15,7 @@ export function Capabilities() {
       <div className="max-w-6xl mx-auto">
         <div className="max-w-3xl mb-16 md:mb-20">
           <p className="text-xs tracking-[0.3em] uppercase text-[#87158c] mb-4">
-            Capabilities
+            Solutions
           </p>
           <h2
             id="capabilities-heading"

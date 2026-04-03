@@ -30,7 +30,7 @@ export function ImageMark({
       <Link
         href="/"
         className={cn(
-          "inline-flex shrink-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#87158c] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]",
+          "inline-flex shrink-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]",
           className
         )}
       >
@@ -52,7 +52,7 @@ export function ImageMark({
     <Link
       href="/"
       className={cn(
-        "inline-flex rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#87158c] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]",
+        "inline-flex rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]",
         className
       )}
     >

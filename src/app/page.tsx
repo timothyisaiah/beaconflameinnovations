@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { ImmersiveHomeClient } from "@/components/home/ImmersiveHomeClient";
+import { LandingPage } from "@/components/home/landing/LandingPage";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Engineering intelligent systems for the long game",
+  title: "Production-ready AI systems, fintech platforms, and infrastructure",
   description:
-    "BeaconFlame Innovations is a software engineering and technology consultancy building AI systems, agentic platforms, analytics, and digital solutions—from Kampala to global partners.",
+    "Beacon Flame Innovations builds production-ready AI systems, fintech platforms, and scalable digital infrastructure for startups and enterprise teams.",
   openGraph: {
-    title: `BeaconFlame Innovations | ${siteConfig.tagline}`,
+    title: `${siteConfig.name} | AI, fintech, and platform engineering`,
     description:
-      "Software engineering, AI systems, agentic AI, analytics, and technology consultancy with world-class execution.",
+      "Production-ready AI systems, embedded finance, and scalable infrastructure—engineered for startups and enterprise teams.",
     url: siteConfig.url,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BeaconFlame Innovations",
+    title: siteConfig.name,
     description:
-      "Engineering-led technology consultancy: AI, platforms, analytics, and strategy.",
+      "Production AI, fintech platforms, and scalable infrastructure for serious teams.",
   },
 };
 
 export default function HomePage() {
-  return <ImmersiveHomeClient />;
+  return <LandingPage />;
 }

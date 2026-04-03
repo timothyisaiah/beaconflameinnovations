@@ -61,8 +61,20 @@ export default function RootLayout({
       className={`dark ${syne.variable} ${dmSans.variable}`}
     >
       <body className="antialiased font-sans min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-3 focus:z-[60] rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-medium text-[var(--foreground)] shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]"
+        >
+          Skip to content
+        </a>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main
+          id="main"
+          tabIndex={-1}
+          className="min-h-screen scroll-mt-24 outline-none"
+        >
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

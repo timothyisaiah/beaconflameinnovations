@@ -1,13 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { useScrollProgressOptional } from "@/contexts/ScrollProgressContext";
 
 export function Hero() {
-  const ctx = useScrollProgressOptional();
-  const scrollTo = ctx?.scrollToSection;
-
   return (
     <section
       id="hero"
@@ -44,21 +41,20 @@ export function Hero() {
           >
             Start a conversation
           </Button>
-          <button
-            type="button"
-            onClick={() => scrollTo?.("capabilities")}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-[#e8e4ee]/88 hover:text-[#c084fc] transition-colors"
+          <Link
+            href="/solutions"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-[#e8e4ee]/88 transition-colors hover:text-[#c084fc] focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ring-offset)]"
           >
-            <span className="border-b border-[#87158c]/50 group-hover:border-[#87158c] pb-0.5">
-              Explore capabilities
+            <span className="border-b border-[#87158c]/50 pb-0.5 group-hover:border-[#87158c]">
+              View solutions
             </span>
             <span
               aria-hidden
-              className="translate-x-0 group-hover:translate-x-1 transition-transform"
+              className="translate-x-0 transition-transform group-hover:translate-x-1"
             >
               →
             </span>
-          </button>
+          </Link>
         </div>
       </motion.div>
     </section>

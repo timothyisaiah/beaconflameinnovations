@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const SECTIONS = [
   { id: "hero", label: "Introduction" },
   { id: "identity", label: "Identity" },
-  { id: "capabilities", label: "Capabilities" },
+  { id: "capabilities", label: "Solutions" },
   { id: "expertise", label: "Expertise" },
   { id: "why", label: "Why Beacon Flame" },
   { id: "industries", label: "Industries" },

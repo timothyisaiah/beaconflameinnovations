@@ -3,11 +3,11 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Contact ${siteConfig.name} for engineering engagements, AI programs, analytics work, and partnerships.`,
+  description: `Request a technical consultation with ${siteConfig.name}—engineering-led response for founders and enterprise teams. Not a generic sales funnel.`,
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
     description:
-      "Reach the team for serious business inquiries, partnerships, and consulting engagements.",
+      "Talk to an engineer about your system. Technical consultation, fast response, and exploratory first conversations.",
   },
 };
 
