@@ -9,7 +9,7 @@ Semantic variables are **dark-first** on `:root`. Use these in new code:
 | `--bg`, `--bg-subtle` | Page canvas |
 | `--surface`, `--surface-raised`, `--surface-elevated` | Panels and cards |
 | `--foreground`, `--foreground-secondary`, `--muted` | Text |
-| `--accent`, `--accent-hover`, `--accent-muted` | Primary actions (enterprise blue) |
+| `--accent`, `--accent-hover`, `--accent-muted` | Primary actions (brand purple) |
 | `--accent-warm`, `--accent-warm-muted` | Secondary emphasis (amber, sparse) |
 | `--border`, `--ring`, `--ring-offset` | Edges and focus |
 | `--section-y-*`, `--container-max`, `--container-padding` | Layout rhythm |
@@ -34,7 +34,7 @@ Optional light band: add class `light` on `<html>` (not default) to use `html.li
 
 ## Layout shell
 
-- **`AppShell`** (`src/components/layout/AppShell.tsx`) — skip link + `#main` landmark + top padding for the fixed header. Root layout wraps all pages with it.
+- Root layout (`src/app/layout.tsx`) — skip link to `#main`, `<main id="main" tabIndex={-1}>`, header, and footer.
 
 ## Typography utilities
 
