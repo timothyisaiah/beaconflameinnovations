@@ -4,13 +4,33 @@ import { siteConfig } from "@/data/site";
 
 /**
  * Env for local dev: put these in `.env.local` (Next.js does not load arbitrary names like `.env.demo`).
- * Production: set the same variables in your host (e.g. Vercel) project settings.
+ * Production: set the same variables on the deployment that actually runs this route (e.g. Vercel).
  *
  * - RESEND_API_KEY — from https://resend.com/api-keys
  * - CONTACT_TO_EMAIL — your inbox (where consultation requests arrive)
  * - CONTACT_FROM_EMAIL — verified sender, e.g. "BeaconFlame <hello@yourdomain.com>"
  *   (Resend test: "onboarding@resend.dev" only delivers to your Resend signup email)
+ *
+ * Static GitHub Pages builds cannot run this file; point the site at a live API via
+ * NEXT_PUBLIC_CONTACT_API_URL. CORS below allows browser POSTs from your marketing origin.
  */
+
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+} as const;
+
+function jsonResponse(body: unknown, init?: { status?: number }) {
+  return NextResponse.json(body, {
+    status: init?.status ?? 200,
+    headers: CORS_HEADERS,
+  });
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+}
 
 const LIMITS = {
   name: 200,
@@ -82,7 +102,7 @@ export async function POST(request: Request) {
   const from = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !to || !from) {
-    return NextResponse.json(
+    return jsonResponse(
       { error: "Contact email is not configured on the server." },
       { status: 503 },
     );
@@ -92,16 +112,16 @@ export async function POST(request: Request) {
   try {
     json = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+    return jsonResponse({ error: "Invalid JSON body." }, { status: 400 });
   }
 
   if (!json || typeof json !== "object") {
-    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+    return jsonResponse({ error: "Invalid payload." }, { status: 400 });
   }
 
   const parsed = parsePayload(json as Body);
   if ("error" in parsed) {
-    return NextResponse.json({ error: parsed.error }, { status: 400 });
+    return jsonResponse({ error: parsed.error }, { status: 400 });
   }
 
   const { name, email, company, projectType, projectDescription } =
@@ -149,11 +169,11 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error("[contact] Resend error:", error);
-    return NextResponse.json(
+    return jsonResponse(
       { error: "Could not send your message. Please try again later." },
       { status: 502 },
     );
   }
 
-  return NextResponse.json({ ok: true });
+  return jsonResponse({ ok: true });
 }

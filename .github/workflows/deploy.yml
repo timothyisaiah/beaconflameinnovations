@@ -27,7 +27,12 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      - name: Build static site for Pages
+        env:
+          STATIC_EXPORT: "true"
+          # Optional: full URL of a live `/api/contact` (e.g. Vercel deploy of this app without STATIC_EXPORT).
+          NEXT_PUBLIC_CONTACT_API_URL: ${{ secrets.NEXT_PUBLIC_CONTACT_API_URL }}
+        run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
