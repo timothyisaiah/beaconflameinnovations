@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
-  Beacon Flame — design tokens (dark-first)
+  BeaconFlame — design tokens (dark-first)
   Use semantic names in components: var(--bg), var(--accent), etc.
   Legacy aliases (--background, --card, …) kept for gradual migration.
 */

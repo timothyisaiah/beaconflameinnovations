@@ -13,6 +13,8 @@ type ButtonProps = {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit";
+  disabled?: boolean;
+  ariaBusy?: boolean;
 };
 
 export function Button({
@@ -23,6 +25,8 @@ export function Button({
   className,
   onClick,
   type = "button",
+  disabled,
+  ariaBusy,
 }: ButtonProps) {
   const reducedMotion = useReducedMotion();
   const combinedClassName = buttonClassName(variant, size, className);
@@ -43,7 +47,13 @@ export function Button({
 
   return (
     <MotionWrapper whileHover={{ scale: hoverScale }} whileTap={{ scale: tapScale }}>
-      <button type={type} onClick={onClick} className={combinedClassName}>
+      <button
+        type={type}
+        onClick={onClick}
+        className={combinedClassName}
+        disabled={disabled}
+        aria-busy={ariaBusy}
+      >
         {children}
       </button>
     </MotionWrapper>

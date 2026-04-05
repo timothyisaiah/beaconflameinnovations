@@ -10,7 +10,7 @@
 !.yarn/releases
 !.yarn/versions
 /.cursor
-
+/.env.*
 # testing
 /coverage
 
