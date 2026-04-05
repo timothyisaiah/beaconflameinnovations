@@ -1,5 +1,5 @@
 /**
- * Beacon Flame — landing page placeholder map
+ * BeaconFlame — landing page placeholder map
  *
  * Replace before production:
  *

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useId } from "react";
+import { useCallback, useId, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ds/Card";
 import { cn } from "@/lib/utils";
@@ -28,21 +28,58 @@ const labelClass =
 
 export function ContactConsultationForm() {
   const hintId = useId();
+  const statusId = useId();
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const payload = {
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      company: String(data.get("company") ?? ""),
-      projectType: String(data.get("projectType") ?? ""),
-      projectDescription: String(data.get("projectDescription") ?? ""),
-    };
-    // Replace with: POST /api/contact or a server action — payload is ready to serialize.
-    console.info("[contact] consultation request", payload);
-  }, []);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const data = new FormData(form);
+      const payload = {
+        name: String(data.get("name") ?? ""),
+        email: String(data.get("email") ?? ""),
+        company: String(data.get("company") ?? ""),
+        projectType: String(data.get("projectType") ?? ""),
+        projectDescription: String(data.get("projectDescription") ?? ""),
+      };
+
+      setStatus("submitting");
+      setErrorMessage(null);
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const body = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+
+        if (!res.ok) {
+          setStatus("error");
+          setErrorMessage(
+            body.error ??
+              "Something went wrong. Please try again or email us directly.",
+          );
+          return;
+        }
+
+        setStatus("success");
+        form.reset();
+      } catch {
+        setStatus("error");
+        setErrorMessage(
+          "Network error. Check your connection and try again, or email us directly.",
+        );
+      }
+    },
+    [],
+  );
 
   return (
     <Card variant="elevated" padding="lg" className="shadow-lg shadow-black/20">
@@ -57,7 +94,11 @@ export function ContactConsultationForm() {
         className="mt-8 space-y-6"
         onSubmit={handleSubmit}
         aria-labelledby={FORM_HEADING_ID}
-        aria-describedby={hintId}
+        aria-describedby={
+          status === "error" && errorMessage
+            ? `${hintId} ${statusId}`
+            : hintId
+        }
       >
         <p id={hintId} className="sr-only">
           Required fields are marked with an asterisk. We use this information only to
@@ -153,9 +194,35 @@ export function ContactConsultationForm() {
         </div>
 
         <div className="pt-2">
-          <Button type="submit" variant="primary" size="lg" className="w-full sm:w-auto">
-            Request Technical Consultation
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            className="w-full sm:w-auto"
+            disabled={status === "submitting"}
+            ariaBusy={status === "submitting"}
+          >
+            {status === "submitting"
+              ? "Sending…"
+              : "Request Technical Consultation"}
           </Button>
+          {status === "success" && (
+            <p
+              className="mt-4 text-sm font-medium text-[var(--foreground-secondary)]"
+              role="status"
+            >
+              Thanks—we received your request and will reply from engineering.
+            </p>
+          )}
+          {status === "error" && errorMessage && (
+            <p
+              id={statusId}
+              className="mt-4 text-sm font-medium text-red-600 dark:text-red-400"
+              role="alert"
+            >
+              {errorMessage}
+            </p>
+          )}
           <p className="mt-4 text-sm text-[var(--muted)]">
             This is not a marketing funnel—submissions go to engineering leadership for review.
           </p>

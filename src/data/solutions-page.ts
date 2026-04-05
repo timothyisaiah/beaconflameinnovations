@@ -38,7 +38,7 @@ export const solutionsHero = {
 export const solutionsOverview = {
   headline: "Depth over breadth",
   intro:
-    "Beacon Flame Innovations partners with technical leaders who need execution, not abstraction. Each engagement is scoped around a concrete system boundary—data contracts, service ownership, and operational runbooks—not a laundry list of technologies.",
+    "BeaconFlame Innovations partners with technical leaders who need execution, not abstraction. Each engagement is scoped around a concrete system boundary—data contracts, service ownership, and operational runbooks—not a laundry list of technologies.",
   highlights: [
     {
       title: "Systems, not projects",

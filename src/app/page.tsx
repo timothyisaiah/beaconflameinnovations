@@ -5,7 +5,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Production-ready AI systems, fintech platforms, and infrastructure",
   description:
-    "Beacon Flame Innovations builds production-ready AI systems, fintech platforms, and scalable digital infrastructure for startups and enterprise teams.",
+    "BeaconFlame Innovations builds production-ready AI systems, fintech platforms, and scalable digital infrastructure for startups and enterprise teams.",
   openGraph: {
     title: `${siteConfig.name} | AI, fintech, and platform engineering`,
     description:

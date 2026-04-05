@@ -7,9 +7,9 @@ export const aboutHero = {
   eyebrow: "About",
   title: "A technical partner for systems that have to work",
   lead:
-    "Beacon Flame Innovations exists to close the gap between ambitious roadmaps and software that survives real users, real load, and real operations. We work with founders shipping their first production stack and with enterprise teams modernizing platforms—always with the same bar: clarity, reliability, and delivery you can audit.",
+    "BeaconFlame Innovations exists to close the gap between ambitious roadmaps and software that survives real users, real load, and real operations. We work with founders shipping their first production stack and with enterprise teams modernizing platforms—always with the same bar: clarity, reliability, and delivery you can audit.",
   supporting:
-    "Headquartered in Kampala; built for global collaboration. Engineering-led, documentation-backed, and allergic to hype without execution.",
+    "Built for global collaboration. Engineering-led, documentation-backed, and allergic to hype without execution.",
 } as const;
 
 export const aboutOrigin = {
@@ -22,7 +22,7 @@ export const aboutOrigin = {
   ],
   /** Why the company exists now */
   whyNowParas: [
-    "Beacon Flame Innovations was founded to do that work deliberately: to build and evolve systems where the hard parts—boundaries, data flows, security posture, and operability—are treated as first-class, not leftovers for “phase two.”",
+    "BeaconFlame Innovations was founded to do that work deliberately: to build and evolve systems where the hard parts—boundaries, data flows, security posture, and operability—are treated as first-class, not leftovers for “phase two.”",
     "That is the work organizations need as AI, agents, and embedded finance move from experiments to regulated, customer-facing surfaces. The window for credible execution is narrow; we exist to help teams use it well.",
   ],
 } as const;

@@ -78,7 +78,7 @@ export function HeroSection() {
             </HeroBlock>
             <HeroBlock delay={d(2)} reduced={reduced}>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--foreground-secondary)] md:text-xl">
-                Beacon Flame Innovations designs and builds production-ready AI
+                BeaconFlame Innovations designs and builds production-ready AI
                 systems, embedded finance, and scalable digital infrastructure
                 for startups and enterprise teams—clear scope, measurable
                 delivery, maintainable code.
