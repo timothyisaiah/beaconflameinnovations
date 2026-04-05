@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 
-// const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
-// const basePath = isGitHubPages ? "/beaconflameinnovations" : "";
+// GitHub Pages needs a static `out/` bundle (set STATIC_EXPORT=true in CI). That bundle
+// cannot run Route Handlers—use NEXT_PUBLIC_CONTACT_API_URL at build time to POST to a
+// full Next/Vercel deployment (same repo, no STATIC_EXPORT) or another HTTPS endpoint.
+// Hosting the full app on Vercel/Node: omit STATIC_EXPORT so `/api/contact` ships with the app.
 const basePath = "";
+const useStaticExport = process.env.STATIC_EXPORT === "true";
+
 const nextConfig: NextConfig = {
-  output: "export",
+  ...(useStaticExport ? { output: "export" as const } : {}),
   basePath,
   env: {
     // Used for public file URLs (e.g. brand PNGs); unoptimized next/image does not prefix basePath on src.
