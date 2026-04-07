@@ -19,10 +19,15 @@ jobs:
       - run: npm ci
 
       # Deploy to Vercel Production (only runs on pushes to `main`)
+      - name: Validate Vercel secrets present
+        run: |
+          test -n "${{ secrets.VERCEL_TOKEN }}" || (echo "Missing secret: VERCEL_TOKEN" && exit 1)
+          test -n "${{ secrets.VERCEL_ORG_ID }}" || (echo "Missing secret: VERCEL_ORG_ID" && exit 1)
+          test -n "${{ secrets.VERCEL_PROJECT_ID }}" || (echo "Missing secret: VERCEL_PROJECT_ID" && exit 1)
+
       - name: Deploy to Vercel (prod)
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           NEXT_PUBLIC_CONTACT_API_URL: ${{ secrets.NEXT_PUBLIC_CONTACT_API_URL }}
-        run: npx vercel@latest deploy --prod --token "$VERCEL_TOKEN" --yes
+        run: npx vercel@latest deploy --prod --token "${{ secrets.VERCEL_TOKEN }}" --yes
