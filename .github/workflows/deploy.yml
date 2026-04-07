@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # This controls which *GitHub Environment* secrets are available to the job.
+    # You currently stored VERCEL_* as environment secrets under `github-pages`,
+    # so we reference that environment here (it does not deploy to GitHub Pages).
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4
 
