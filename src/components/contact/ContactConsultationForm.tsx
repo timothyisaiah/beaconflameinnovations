@@ -26,6 +26,12 @@ const fieldClass = cn(
 const labelClass =
   "mb-2 block text-sm font-medium text-[var(--foreground-secondary)]";
 
+function getContactSubmitUrl(): string {
+  const base = process.env.NEXT_PUBLIC_CONTACT_API_URL?.trim();
+  if (base) return base;
+  return "/api/contact";
+}
+
 export function ContactConsultationForm() {
   const hintId = useId();
   const statusId = useId();
@@ -51,10 +57,11 @@ export function ContactConsultationForm() {
       setErrorMessage(null);
 
       try {
-        const res = await fetch("/api/contact", {
+        const res = await fetch(getContactSubmitUrl(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
+          mode: "cors",
         });
         const body = (await res.json().catch(() => ({}))) as {
           error?: string;
